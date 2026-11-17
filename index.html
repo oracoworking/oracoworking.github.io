@@ -1,0 +1,403 @@
+<title>ORA Coworking de Saúde</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Consultórios por hora para profissionais da saúde em Porto Alegre. Por Gabrielle e Larissa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: editorial em champanhe — logo dourado em destaque, blocos divididos por fios dourados, curvas finas como na identidade do ORA. Tema claro único, por escolha da marca. */
+:root{
+  color-scheme:light;
+  --cream:#F8F1E7; --champ:#F1E4D2; --white:#FFFBF5;
+  --ink:#3E2A1D; --muted:#86705C; --line:#E2D2BC;
+  --gold:#B8893F; --gold2:#D9B36E; --brown:#6E4126; --brown2:#8A5634;
+  --f-script:"Allura","Snell Roundhand",cursive;
+  --f-serif:"Cormorant Garamond",Georgia,serif;
+  --f-body:"Jost","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--f-body);font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--cream)}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+.script{font-family:var(--f-script);font-weight:400;line-height:1}
+.label{font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.thread{display:flex;align-items:center;gap:12px;color:var(--gold2)}
+.thread::before,.thread::after{content:"";height:1px;width:56px;background:linear-gradient(90deg,transparent,currentColor)}
+.thread::after{transform:scaleX(-1)}
+.thread i{width:6px;height:6px;transform:rotate(45deg);border:1px solid var(--gold)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:48px;padding:.75em 1.8em;border-radius:999px;font-family:var(--f-body);font-size:.7rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,background .3s ease}
+.btn-gold{color:#FFF6E6;background:linear-gradient(120deg,var(--brown) 0%,var(--brown2) 45%,#A9783F 100%);box-shadow:0 10px 26px -14px rgba(110,65,38,.7),inset 0 1px 0 rgba(255,235,200,.35);border:1px solid #C69A55}
+.btn-gold:hover{transform:translateY(-1px)}
+.btn-line{color:var(--brown);border:1px solid var(--gold2);background:transparent}
+.btn-line:hover{background:var(--white)}
+.btn svg{width:16px;height:16px}
+a:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+
+/* topo */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(248,241,231,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.top .brand img{height:38px;width:auto}
+.top nav{display:flex;gap:26px;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--brown)}
+@media (max-width:780px){.top nav{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;background:radial-gradient(70% 70% at 50% 40%,#FFF8EC 0%,var(--cream) 55%,var(--champ) 100%)}
+.hero svg.curves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;display:grid;justify-items:center;gap:18px;padding-block:64px 80px}
+.hero .logo{width:min(440px,78vw);filter:drop-shadow(0 8px 14px rgba(110,70,30,.16))}
+.hero .sig{width:min(300px,62vw);margin-top:-4px}
+.hero h1{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.15;color:var(--ink);max-width:18ch;margin-top:14px}
+.hero .sub{color:var(--muted);max-width:52ch;font-size:1.02rem}
+.hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:8px}
+.hero .where{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* faixa */
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:var(--white)}
+.marquee .track{display:flex;width:max-content;animation:slide 50s linear infinite}
+.marquee span{font-family:var(--f-serif);font-style:italic;font-size:1.15rem;color:var(--brown);padding:13px 0;white-space:nowrap}
+.marquee span::after{content:"✦";margin:0 22px;color:var(--gold2);font-size:.65em;font-style:normal}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seções */
+section{padding-block:96px}
+@media (max-width:640px){section{padding-block:68px}}
+.head{display:grid;gap:12px;justify-items:center;text-align:center;margin:0 auto 52px;max-width:640px}
+.head h2{font-family:var(--f-script);font-size:clamp(3rem,6.4vw,4.2rem);color:var(--brown);line-height:1}
+.head p{color:var(--muted)}
+
+/* promo */
+.promo{background:var(--white);border-block:1px solid var(--line)}
+.promo .card{max-width:820px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:36px 40px;border:1px solid var(--gold2);border-radius:28px;background:linear-gradient(160deg,#FFF9EF,var(--champ))}
+.price{display:flex;align-items:baseline;gap:10px;padding:18px 30px;border-radius:999px;background:linear-gradient(120deg,var(--brown),var(--brown2) 50%,#A9783F);color:#FBE7C4;box-shadow:0 14px 30px -18px rgba(110,65,38,.8)}
+.price b{font-family:var(--f-serif);font-weight:500;font-size:4rem;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;line-height:1.4}
+.promo .txt{display:grid;gap:10px;min-width:0}
+.promo .txt h3{font-family:var(--f-serif);font-size:1.7rem;font-style:italic}
+.promo .dates{display:grid;gap:4px;font-size:.92rem;color:var(--muted)}
+.promo .dates b{color:var(--ink);font-weight:500}
+@media (max-width:700px){.promo .card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:30px 22px}}
+
+/* como funciona */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.steps li{padding:30px 24px 10px;display:grid;gap:10px;align-content:start}
+.steps li+li{border-left:1px solid var(--line)}
+.steps .n{font-family:var(--f-serif);font-size:2.6rem;line-height:1;color:var(--gold)}
+.steps h3{font-family:var(--f-serif);font-size:1.35rem;font-weight:500}
+.steps p{color:var(--muted);font-size:.93rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}.steps li:nth-child(3){border-left:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.steps li+li{border-left:0;border-top:1px solid var(--line)}}
+
+/* espaço */
+.space{background:linear-gradient(180deg,var(--cream),var(--champ))}
+.gallery{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:240px 240px;gap:14px}
+.ph{position:relative;border-radius:18px;overflow:hidden;border:1px dashed var(--gold2);background:repeating-linear-gradient(135deg,rgba(217,179,110,.08) 0 14px,rgba(255,251,245,.6) 14px 28px);display:grid;place-items:center;text-align:center;color:var(--muted)}
+.ph:first-child{grid-row:span 2}
+.ph span{font-family:var(--f-serif);font-style:italic;font-size:1.05rem}
+.ph small{display:block;font-family:var(--f-body);font-style:normal;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.feats{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.feats div{padding:22px 18px;display:flex;gap:14px;align-items:flex-start}
+.feats svg{width:26px;height:26px;flex:none;stroke:var(--gold);fill:none;stroke-width:1.3}
+.feats b{display:block;font-family:var(--f-serif);font-size:1.15rem;font-weight:500;color:var(--ink)}
+.feats p{color:var(--muted);font-size:.88rem}
+@media (max-width:860px){.gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 160px 160px}.ph:first-child{grid-column:span 2;grid-row:auto}.feats{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.feats{grid-template-columns:1fr}}
+
+/* valores */
+.prices{max-width:820px;margin:0 auto;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:6px 26px;align-items:baseline;padding:20px 6px;border-bottom:1px solid var(--line)}
+.row .t{font-family:var(--f-serif);font-size:1.4rem}
+.row .d{grid-column:1;color:var(--muted);font-size:.86rem}
+.row .h{grid-row:1/span 2;grid-column:2;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .v{grid-row:1/span 2;grid-column:3;font-family:var(--f-serif);font-size:1.7rem;color:var(--brown);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{max-width:820px;margin:18px auto 0;color:var(--muted);font-size:.86rem;text-align:center}
+@media (max-width:560px){.row{grid-template-columns:1fr auto}.row .h{grid-row:auto;grid-column:1}.row .v{grid-column:2}}
+
+/* para quem */
+.who{background:var(--white);border-block:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:860px;margin:0 auto}
+.chips span{font-family:var(--f-serif);font-size:1.15rem;font-style:italic;padding:.45em 1.3em;border:1px solid var(--gold2);border-radius:999px;color:var(--brown);background:var(--cream)}
+
+/* sócias */
+.about .grid{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center}
+.about .txt{justify-items:center}.about .txt p{margin-inline:auto}.about .socias{justify-content:center}
+.about figure{margin:0;position:relative;max-width:420px;justify-self:center;width:100%}
+.about figure::before{content:"";position:absolute;inset:-12px;border:1px solid var(--gold2);border-radius:999px 999px 18px 18px}
+.about figure img{position:relative;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:999px 999px 12px 12px;object-position:50% 20%}
+.about .txt{display:grid;gap:16px;min-width:0}
+.about .txt h2{font-family:var(--f-script);font-size:clamp(3rem,6vw,4rem);color:var(--brown);line-height:1}
+.about .txt .lead{font-family:var(--f-serif);font-size:1.45rem;line-height:1.4;font-style:italic}
+.about .txt p{color:var(--muted);max-width:58ch}
+
+.socias{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+@media (max-width:860px){.about .grid{grid-template-columns:1fr;gap:48px}.about figure{max-width:300px}}
+
+/* local */
+.local .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto}
+.addr{display:grid;gap:8px}
+.addr b{font-family:var(--f-serif);font-size:1.6rem;font-weight:500}
+.addr p{color:var(--muted)}
+.steps2{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.steps2 li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.94rem}
+.steps2 li b{color:var(--ink);font-weight:500}
+.steps2 .k{font-family:var(--f-serif);font-size:1.4rem;color:var(--gold);line-height:1.2}
+@media (max-width:760px){.local .grid{grid-template-columns:1fr;gap:32px}}
+
+/* cta final */
+.final{position:relative;overflow:hidden;text-align:center;background:radial-gradient(80% 90% at 50% 50%,#FFF8EC,var(--champ))}
+.final .wrap{position:relative;display:grid;gap:18px;justify-items:center}
+.final h2{font-family:var(--f-script);font-size:clamp(3.2rem,7vw,4.8rem);color:var(--brown);line-height:1}
+.final p{color:var(--muted);max-width:46ch}
+
+footer{background:var(--brown);color:#F2DDBC}
+footer .wrap{display:grid;gap:14px;justify-items:center;text-align:center;padding-block:44px 36px}
+footer img{width:180px;filter:brightness(1.35) saturate(.8)}
+footer .fine{font-size:.72rem;letter-spacing:.1em;color:#D9BF97;line-height:1.9}
+footer a{color:#FBE7C4}
+
+a.row{color:inherit;text-decoration:none;transition:background .3s ease}
+a.row:hover{background:var(--white)}
+.row .go{grid-column:1;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:.55em;padding:.85em 1.3em;border-radius:999px;color:#FFF6E6;text-decoration:none;font-size:.66rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;background:linear-gradient(120deg,var(--brown),var(--brown2) 45%,#A9783F);border:1px solid #C69A55;box-shadow:0 14px 30px -14px rgba(62,42,29,.75)}
+.wa-float svg{width:20px;height:20px}
+@media (max-width:560px){.wa-float span{display:none}.wa-float{padding:14px}}
+.openhouse{text-align:center;background:linear-gradient(180deg,var(--white),var(--champ));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.openhouse .wrap{display:grid;justify-items:center;gap:14px}
+.openhouse h2{font-family:var(--f-script);font-weight:400;font-size:clamp(3.4rem,8vw,5.4rem);color:var(--brown);line-height:1}
+.openhouse .kick{font-family:var(--f-serif);font-style:italic;font-size:1.35rem;color:var(--muted);margin-top:-6px}
+.openhouse .date{display:flex;align-items:center;gap:14px;margin-top:6px}
+.openhouse .date b{font-family:var(--f-serif);font-weight:400;font-size:4.2rem;line-height:1;color:var(--gold)}
+.openhouse .date span{text-align:left;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);line-height:1.9}
+.oh-list{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:4px 0 10px;padding:0}
+.oh-list li{font-family:var(--f-serif);font-style:italic;font-size:1.12rem;color:var(--brown)}
+.oh-list li+li::before{content:"✦";font-style:normal;font-size:.6rem;color:var(--gold);margin-right:22px;vertical-align:middle}
+@media (max-width:560px){.oh-list{flex-direction:column;gap:4px}.oh-list li+li::before{display:none}}
+.openhouse .hours{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brown);margin-top:-2px}
+.openhouse .oh-note{color:var(--muted);max-width:46ch;font-size:.95rem;line-height:1.7;margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="ORA Coworking de Saúde, início"><img src="img/logo-ora.png" alt="ORA Coworking de Saúde"></a>
+    <nav aria-label="Seções">
+      <a href="#open-house">Open House</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#espaco">O espaço</a>
+      <a href="#valores">Valores</a>
+      <a href="#sobre">Quem somos</a>
+      <a href="#local">Localização</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <svg class="curves" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C9973F" stop-opacity="0"/><stop offset=".45" stop-color="#E9C77B"/><stop offset=".6" stop-color="#FFF1C9"/><stop offset=".8" stop-color="#D6A54E"/><stop offset="1" stop-color="#C9973F" stop-opacity="0"/></linearGradient></defs>
+      <path d="M-40 140 C 180 60, 300 10, 520 -20" fill="none" stroke="url(#gd)" stroke-width="2"/>
+      <path d="M-40 180 C 200 90, 320 40, 560 -10" fill="none" stroke="url(#gd)" stroke-width="1"/>
+      <path d="M1240 520 C 1020 600, 900 660, 700 720" fill="none" stroke="url(#gd)" stroke-width="2"/>
+      <path d="M1240 560 C 1040 630, 930 690, 740 740" fill="none" stroke="url(#gd)" stroke-width="1"/>
+    </svg>
+    <div class="wrap">
+      <img class="logo" src="img/logo-ora.png" alt="ORA Coworking de Saúde">
+      <img class="sig" src="img/por-gabrielle-e-larissa.png" alt="Por Gabrielle e Larissa">
+      <h1>O novo queridinho dos profissionais da saúde</h1>
+      <p class="sub">Consultório por hora num ambiente sofisticado e acolhedor. Sem assinatura, sem burocracia: você reserva só o tempo que precisa e recebe seus pacientes com o conforto que eles merecem.</p>
+      <div class="ctas">
+        <a class="btn btn-gold" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20um%20hor%C3%A1rio.%20Minha%20%C3%A1rea%20de%20atua%C3%A7%C3%A3o%20%C3%A9%3A%20" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg>
+          Reserve pelo WhatsApp
+        </a>
+        <a class="btn btn-line" href="https://ig.me/m/oracoworking" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg> Direct</a>
+      </div>
+      <p class="where">Bourbon Teresópolis · Porto Alegre · Mediante agendamento</p>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Psicologia</span><span>Nutrição</span><span>Fisioterapia</span><span>Biomedicina estética</span><span>Terapias integrativas</span><span>Fonoaudiologia</span><span>Massoterapia</span><span>Consultório por hora</span>
+      <span>Psicologia</span><span>Nutrição</span><span>Fisioterapia</span><span>Biomedicina estética</span><span>Terapias integrativas</span><span>Fonoaudiologia</span><span>Massoterapia</span><span>Consultório por hora</span>
+    </div>
+  </div>
+
+  <section class="promo" style="padding-block:72px">
+    <div class="wrap">
+      <div class="card">
+        <div class="price"><b>R$ 49</b><small>por<br>hora</small></div>
+        <div class="txt">
+          <span class="label">Promoção especial de lançamento</span>
+          <h3>Garanta suas horas pelo menor valor</h3>
+          <div class="dates">
+            <span>Compre até <b>31/12/2026</b></span>
+            <span>Utilize suas horas até <b>30/04/2027</b></span>
+          </div>
+          <a class="btn btn-gold" style="margin-top:14px" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20garantir%20horas%20na%20promo%C3%A7%C3%A3o%20de%20lan%C3%A7amento%20%28R%24%2049%20a%20hora%29." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg> Quero garantir</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- OPEN HOUSE: some sozinho a partir de 29/11/2026 -->
+  <section class="openhouse" id="open-house" data-until="2026-11-29">
+    <div class="wrap">
+      <span class="label">Você é nosso convidado</span>
+      <h2>Open House</h2>
+      <p class="kick">Inauguração do ORA</p>
+      <div class="date"><b>28</b><span>sábado<br>novembro</span></div>
+      <p class="hours">das 8h às 19h</p>
+      <div class="thread"><i></i></div>
+      <ul class="oh-list">
+        <li>Conheça o espaço</li><li>Tire suas dúvidas</li><li>Garanta seu pacote</li><li>Brinde com a gente</li>
+      </ul>
+      <p class="oh-note">Venha no horário que for melhor para você. Só pedimos que confirme presença e nos diga mais ou menos a que horas pretende vir, para podermos te receber com toda a atenção.</p>
+      <a class="btn btn-gold" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20confirmar%20presen%C3%A7a%20no%20Open%20House%20de%20inaugura%C3%A7%C3%A3o%2C%20s%C3%A1bado%2028/11.%0AMinha%20%C3%A1rea%20de%20atua%C3%A7%C3%A3o%20%C3%A9%3A%20%0APretendo%20chegar%20por%20volta%20das%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg> Confirmar presença</a>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Simples assim</span>
+        <h2>Como funciona</h2>
+        <div class="thread"><i></i></div>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><h3>Fale com a gente</h3><p>Chame no WhatsApp ou no direct do @oracoworking e conte qual é a sua área de atuação.</p></li>
+        <li><span class="n">2</span><h3>Escolha o horário</h3><p>Veja os horários livres e reserve só as horas que você precisa.</p></li>
+        <li><span class="n">3</span><h3>Confirme a reserva</h3><p>Pagamento por hora avulsa ou pacote, via Pix ou cartão.</p></li>
+        <li><span class="n">4</span><h3>Chegue e atenda</h3><p>Seu consultório estará pronto, limpo e preparado para receber seu paciente.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="space" id="espaco">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Entre e sinta</span>
+        <h2>O espaço</h2>
+        <div class="thread"><i></i></div>
+        <p>Cada detalhe do ORA foi pensado para que você e seu paciente se sintam em casa.</p>
+      </div>
+      <div class="gallery">
+        <!-- FOTOS: substituir cada .ph por <img src="img/espaco-1.jpg" alt="..."> com object-fit:cover -->
+        <div class="ph"><div><span>Consultório</span><small>foto em breve</small></div></div>
+        <div class="ph"><div><span>Recepção</span><small>foto em breve</small></div></div>
+        <div class="ph"><div><span>Detalhes</span><small>foto em breve</small></div></div>
+        <div class="ph"><div><span>Maca</span><small>foto em breve</small></div></div>
+        <div class="ph"><div><span>Ambiente</span><small>foto em breve</small></div></div>
+      </div>
+      <div class="feats">
+        <div><svg viewBox="0 0 24 24"><path d="M3 18h18M5 18v-5h14v5M7 13V9h5v4"/></svg><div><b>Consultório equipado</b><p>Maca e estrutura prontas para o seu atendimento.</p></div></div>
+        <div><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11M9 20v-6h6v6"/></svg><div><b>Recepção acolhedora</b><p>Seu paciente é recebido num ambiente elegante e confortável.</p></div></div>
+        <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><div><b>Bourbon Teresópolis</b><p>Prédio comercial com portaria, segurança e estacionamento do shopping.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="valores">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Sem assinatura</span>
+        <h2>Valores</h2>
+        <div class="thread"><i></i></div>
+        <p>Pague só pelas horas que usar. Quanto mais horas, menor o valor da hora.</p>
+      </div>
+      <div class="prices">
+        <a class="row" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20uma%20hora%20avulsa." target="_blank" rel="noopener" aria-label="Reservar hora avulsa pelo WhatsApp"><span class="t">Hora avulsa</span><span class="d">Para atendimentos pontuais</span><span class="h">1 hora</span><span class="v">R$ 59</span><span class="go">Reservar pelo WhatsApp →</span></a>
+        <a class="row" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20o%20pacote%20de%205%20horas." target="_blank" rel="noopener" aria-label="Reservar pacote 5 horas pelo WhatsApp"><span class="t">Pacote 5 horas</span><span class="d">R$ 55 por hora</span><span class="h">5 horas</span><span class="v">R$ 275</span><span class="go">Reservar pelo WhatsApp →</span></a>
+        <a class="row" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20o%20pacote%20de%2010%20horas." target="_blank" rel="noopener" aria-label="Reservar pacote 10 horas pelo WhatsApp"><span class="t">Pacote 10 horas</span><span class="d">R$ 52 por hora</span><span class="h">10 horas</span><span class="v">R$ 520</span><span class="go">Reservar pelo WhatsApp →</span></a>
+        <a class="row" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20o%20pacote%20de%2020%20horas." target="_blank" rel="noopener" aria-label="Reservar pacote 20 horas pelo WhatsApp"><span class="t">Pacote 20 horas</span><span class="d">R$ 49 por hora, sempre</span><span class="h">20 horas</span><span class="v">R$ 980</span><span class="go">Reservar pelo WhatsApp →</span></a>
+      </div>
+      <p class="note">Toque no pacote para reservar pelo WhatsApp. Na promoção de lançamento, a hora sai por R$ 49 para compras até 31/12/2026.</p>
+    </div>
+  </section>
+
+  <section class="who">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Para quem é</span>
+        <h2>Feito para quem cuida</h2>
+        <div class="thread"><i></i></div>
+      </div>
+      <div class="chips">
+        <span>Psicólogas</span><span>Nutricionistas</span><span>Fisioterapeutas</span><span>Biomédicas</span><span>Esteticistas</span><span>Terapeutas integrativas</span><span>Fonoaudiólogas</span><span>Massoterapeutas</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="wrap">
+      <div class="grid">
+        <!-- FOTO DAS SÓCIAS: entra aqui quando tiver a foto profissional -->
+        <div class="txt">
+          <span class="label">Quem somos</span>
+          <h2>Gabrielle e Larissa</h2>
+          <div class="thread"><i></i></div>
+          <p class="lead">De colegas de estágio a sócias: duas biomédicas com um mesmo sonho.</p>
+          <p>Criamos o ORA a partir da nossa própria rotina. Sabemos o quanto é difícil encontrar um espaço bonito, bem equipado e com preço justo para atender. Aqui, você encontra estrutura, acolhimento e liberdade para cuidar dos seus pacientes como eles merecem.</p>
+          <div class="socias">
+            <a class="btn btn-line" href="https://www.instagram.com/dragabrielleaguiar" target="_blank" rel="noopener">@dragabrielleaguiar</a>
+            <a class="btn btn-line" href="https://www.instagram.com/dra.larimunhoz" target="_blank" rel="noopener">@dra.larimunhoz</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local" id="local" style="background:var(--white);border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Como chegar</span>
+        <h2>Localização</h2>
+        <div class="thread"><i></i></div>
+      </div>
+      <div class="grid">
+        <div class="addr">
+          <b>Bourbon Teresópolis</b>
+          <p>R. Cel. Aparício Borges, 250 · Teresópolis<br>Porto Alegre/RS</p>
+          <p style="margin-top:10px"><b style="font-family:var(--f-body);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)">Funcionamento</b><br>Mediante agendamento</p>
+          <div style="margin-top:12px"><a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Bourbon%20Shopping%20Teres%C3%B3polis%2C%20Porto%20Alegre" target="_blank" rel="noopener">Abrir no mapa</a></div>
+        </div>
+        <ol class="steps2">
+          <li><span class="k">1</span><span><b>Recepção no 3º andar.</b> Identifique-se com um documento.</span></li>
+          <li><span class="k">2</span><span><b>Suba para o 8º andar,</b> sala 803.</span></li>
+          <li><span class="k">3</span><span><b>Estacionamento</b> no próprio shopping, com acesso pela R. Cel. Aparício Borges.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>Venha conhecer o ORA</h2>
+      <div class="thread"><i></i></div>
+      <p>Agende uma visita, conheça o espaço pessoalmente e garanta o seu horário.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        <a class="btn btn-gold" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20agendar%20uma%20visita%20para%20conhecer%20o%20espa%C3%A7o." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg> Agendar visita</a>
+        <a class="btn btn-line" href="https://ig.me/m/oracoworking" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg> Direct</a>
+      </div>
+      <p style="font-size:.85rem;letter-spacing:.08em">WhatsApp (51) 99178-5354</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-ora.png" alt="ORA Coworking de Saúde">
+    <p class="fine">Consultórios por hora para profissionais da saúde<br>Bourbon Teresópolis · Porto Alegre/RS<br><a href="https://www.instagram.com/oracoworking" target="_blank" rel="noopener">@oracoworking</a> · <a href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde." target="_blank" rel="noopener">(51) 99178-5354</a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar com o ORA no WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg><span>WhatsApp</span></a>
+<script>try{document.querySelectorAll('[data-until]').forEach(function(e){if(new Date()>=new Date(e.dataset.until+'T00:00:00-03:00'))e.remove()})}catch(e){}</script>
