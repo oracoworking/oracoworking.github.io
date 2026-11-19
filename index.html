@@ -195,6 +195,16 @@ a.row:hover{background:var(--white)}
 @media (max-width:560px){.oh-list{flex-direction:column;gap:4px}.oh-list li+li::before{display:none}}
 .openhouse .hours{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brown);margin-top:-2px}
 .openhouse .oh-note{color:var(--muted);max-width:46ch;font-size:.95rem;line-height:1.7;margin-bottom:6px}
+.why{background:var(--white);border-block:1px solid var(--line)}
+.cmpgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
+.cmpgrid .col{padding:34px 34px 28px;border:1px solid var(--line);border-radius:18px}
+.cmpgrid .tt{display:block;font-family:var(--f-serif);font-size:1.6rem;margin-bottom:14px}
+.cmpgrid ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.cmpgrid li{display:flex;gap:12px;font-size:.95rem;line-height:1.5}
+.cmpgrid .old{color:var(--muted)}.cmpgrid .old li::before{content:"–";color:#b9a58c}
+.cmpgrid .new{background:linear-gradient(160deg,#FFF8EC,var(--champ));border-color:var(--gold2);color:var(--ink)}
+.cmpgrid .new .tt{color:var(--brown)}.cmpgrid .new li::before{content:"✦";color:var(--gold);font-size:.8em;padding-top:.2em}
+@media (max-width:760px){.cmpgrid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -228,7 +238,7 @@ a.row:hover{background:var(--white)}
       <img class="logo" src="img/logo-ora.png" alt="ORA Coworking de Saúde">
       <img class="sig" src="img/por-gabrielle-e-larissa.png" alt="Por Gabrielle e Larissa">
       <h1>O novo queridinho dos profissionais da saúde</h1>
-      <p class="sub">Consultório por hora num ambiente sofisticado e acolhedor. Sem assinatura, sem burocracia: você reserva só o tempo que precisa e recebe seus pacientes com o conforto que eles merecem.</p>
+      <p class="sub">Atenda seus pacientes num consultório sofisticado no Bourbon Teresópolis e pague só pelas horas que usar. Sem aluguel fixo, sem condomínio, sem burocracia: você cuida dos pacientes, o ORA cuida do resto.</p>
       <div class="ctas">
         <a class="btn btn-gold" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20reservar%20um%20hor%C3%A1rio.%20Minha%20%C3%A1rea%20de%20atua%C3%A7%C3%A3o%20%C3%A9%3A%20" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg>
@@ -282,6 +292,21 @@ a.row:hover{background:var(--white)}
     </div>
   </section>
 
+  <section class="why" id="por-que">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Faça as contas</span>
+        <h2>Por que o ORA</h2>
+        <div class="thread"><i></i></div>
+        <p>Consultório próprio custa caro mesmo quando fica vazio. No ORA, você investe só no tempo em que está atendendo.</p>
+      </div>
+      <div class="cmpgrid">
+        <div class="col old"><span class="tt">Consultório próprio</span><ul><li>Aluguel e condomínio todo mês</li><li>Luz, internet e limpeza por sua conta</li><li>Móveis, maca e decoração para comprar</li><li>Contrato longo e fiador</li><li>Sala parada nos dias sem paciente</li></ul></div>
+        <div class="col new"><span class="tt">ORA Coworking</span><ul><li>Você paga só as horas que usar</li><li>Consultório equipado e pronto para atender</li><li>Recepção acolhedora para o seu paciente</li><li>Sem assinatura e sem fidelidade</li><li>Endereço de prestígio no Bourbon Teresópolis</li></ul></div>
+      </div>
+    </div>
+  </section>
+
   <section id="como-funciona">
     <div class="wrap">
       <div class="head">
@@ -304,7 +329,7 @@ a.row:hover{background:var(--white)}
         <span class="label">Entre e sinta</span>
         <h2>O espaço</h2>
         <div class="thread"><i></i></div>
-        <p>Cada detalhe do ORA foi pensado para que você e seu paciente se sintam em casa.</p>
+        <p>A primeira impressão do seu paciente começa na recepção. Cada detalhe do ORA foi pensado para que ele perceba o valor do seu atendimento antes mesmo da consulta.</p>
       </div>
       <div class="gallery">
         <!-- FOTOS: substituir cada .ph por <img src="img/espaco-1.jpg" alt="..."> com object-fit:cover -->
@@ -399,7 +424,7 @@ a.row:hover{background:var(--white)}
     <div class="wrap">
       <h2>Venha conhecer o ORA</h2>
       <div class="thread"><i></i></div>
-      <p>Agende uma visita, conheça o espaço pessoalmente e garanta o seu horário.</p>
+      <p>Agende uma visita sem compromisso, conheça o espaço pessoalmente e saia com o seu horário garantido.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
         <a class="btn btn-gold" href="https://wa.me/5551991785354?text=Oi%21%20Vim%20pelo%20site%20do%20ORA%20Coworking%20de%20Sa%C3%BAde%20e%20quero%20agendar%20uma%20visita%20para%20conhecer%20o%20espa%C3%A7o." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.6c0 3.3 3 6.4 6.4 6.4l1.1-1.3-1.9-1-.9.8a5 5 0 0 1-2.6-2.6l.8-.9-1-1.9L9.6 9z" stroke-width="1.2"/></svg> Agendar visita</a>
         <a class="btn btn-line" href="https://ig.me/m/oracoworking" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg> Direct</a>
